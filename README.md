@@ -29,7 +29,7 @@ As seguintes funcionalidades são consideradas essenciais e serão implementadas
 
 Os protótipos de tela foram criados no Figma para demonstrar o fluxo de navegação e o design da interface. Você pode interagir com as telas e visualizar o protótipo clicando no link abaixo.
 
-[Protótipo do ToDoApp no Figma](<insira_aqui_o_link_público_do_seu_Figma>)
+https://www.figma.com/design/XZQFp2gj0cUmtXzecB2hyq/Untitled?node-id=0-1&t=YA6PPgJynAqBp8XF-1
 
 ---
 
