@@ -54,6 +54,9 @@ A modelagem foi aprimorada para contemplar incrementos futuros. As informações
   }
 ]
 
+
+---
+
 Planejamento de sprints
 
 O desenvolvimento do ToDoApp será dividido em sprints de duas semanas para garantir um progresso contínuo e organizado.
