@@ -4,7 +4,7 @@
 
 Este aplicativo móvel, chamado **ToDoApp**, foi desenvolvido para as plataformas Android e iOS usando o **Expo** e a linguagem de programação JavaScript (com React Native). O objetivo principal é ajudar usuários a organizar e gerenciar suas tarefas diárias de forma simples e eficaz, oferecendo uma interface limpa e intuitiva para focar na produtividade.
 
-### Funcionalidades Prioritárias (Checkpoint 1)
+### Funcionalidades Prioritárias
 
 As seguintes funcionalidades são consideradas essenciais e serão implementadas como prioridade neste projeto:
 
