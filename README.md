@@ -32,29 +32,6 @@ https://www.figma.com/design/XZQFp2gj0cUmtXzecB2hyq/Untitled?node-id=0-1&t=Khjqa
 
 ---
 
-## Modelagem do banco de dados
-
-Para a persistência de dados local, utilizaremos o **AsyncStorage**, uma biblioteca simples e eficaz para armazenamento local assíncrono, ideal para a abordagem NoSQL deste projeto.
-
-A modelagem foi aprimorada para contemplar incrementos futuros. As informações das tarefas serão armazenadas como uma lista de objetos, onde cada objeto representa uma tarefa com o seguinte esquema (schema):
-
-**Schema de uma Tarefa:**
-
-```json
-[
-  {
-    "id": "uuid-gerado-automaticamente",
-    "titulo": "Título da Tarefa",
-    "descricao": "Uma breve descrição da tarefa.",
-    "concluida": false,
-    "prioridade": "média",
-    "categoria": "pessoal", 
-    "dataCriacao": "2025-09-08T14:30:00Z",
-    "dataConclusao": null 
-  }
-]
-
-
 ---
 
 Planejamento de sprints
@@ -88,3 +65,27 @@ Sprint 3: Melhorias e Funcionalidades Adicionais (20/10 a 10/11)
     Melhorias na UX/UI: Adição de funcionalidades de edição de tarefas e aprimoramento dos estilos.
 
     Testes: Realização de testes de usabilidade e depuração do aplicativo.
+
+## Modelagem do banco de dados
+
+Para a persistência de dados local, utilizaremos o **AsyncStorage**, uma biblioteca simples e eficaz para armazenamento local assíncrono, ideal para a abordagem NoSQL deste projeto.
+
+A modelagem foi aprimorada para contemplar incrementos futuros. As informações das tarefas serão armazenadas como uma lista de objetos, onde cada objeto representa uma tarefa com o seguinte esquema (schema):
+
+**Schema de uma Tarefa:**
+
+```json
+[
+  {
+    "id": "uuid-gerado-automaticamente",
+    "titulo": "Título da Tarefa",
+    "descricao": "Uma breve descrição da tarefa.",
+    "concluida": false,
+    "prioridade": "média",
+    "categoria": "pessoal", 
+    "dataCriacao": "2025-09-08T14:30:00Z",
+    "dataConclusao": null 
+  }
+]
+
+
