@@ -1,11 +1,8 @@
-ToDoApp - Gerenciador de Tarefas Diárias
+**ToDoApp - Gerenciador de Tarefas Diárias**
+
 Sobre o app
 
-Este aplicativo móvel, chamado ToDoApp, foi desenvolvido para as plataformas Android e iOS usando o Expo
-e a linguagem de programação JavaScript (com React Native). O objetivo
-principal é ajudar usuários a organizar e gerenciar suas tarefas diárias
-de forma simples e eficaz, oferecendo uma interface limpa e intuitiva
-para focar na produtividade.
+Este aplicativo móvel, chamado ToDoApp, foi desenvolvido para as plataformas Android e iOS usando o Expo e a linguagem de programação JavaScript (com React Native). O objetivo principal é ajudar usuários a organizar e gerenciar suas tarefas diárias de forma simples e eficaz, oferecendo uma interface limpa e intuitiva para focar na produtividade.
 Funcionalidades Prioritárias
 
 As seguintes funcionalidades são consideradas essenciais e serão implementadas como prioridade neste projeto:
@@ -34,15 +31,13 @@ Trabalhos Futuros (Funcionalidades Adicionais)
 
 Protótipos de tela
 
-Os protótipos de tela foram criados no Figma para demonstrar o fluxo de
-navegação e o design da interface. O design foi aprimorado para incluir o
-fluxo de edição e exclusão de tarefas, além de uma tela de
-configurações, conforme o feedback.
+Os protótipos de tela foram criados no Figma para demonstrar o fluxo de navegação e o design da interface. O design foi aprimorado para incluir o fluxo de edição e exclusão de tarefas, além de uma tela de configurações, conforme o feedback.
 
 Protótipo do ToDoApp no Figma
 https://www.figma.com/design/XZQFp2gj0cUmtXzecB2hyq/Untitled?node-id=0-1&t=WcLTV2oDFQ423U9V-1
 
-Planejamento de sprints
+
+**Planejamento de sprints**
 
 O desenvolvimento do ToDoApp será dividido em sprints de duas semanas para garantir um progresso contínuo e organizado.
 Sprint 1: Configuração e Interface (22/09 a 30/09) - CONCLUÍDA
@@ -74,12 +69,9 @@ Sprint 3: Melhorias e Funcionalidades Adicionais (20/10 a 10/11)
 Modelagem do banco de dados
 
 Para a persistência de dados local, utilizaremos o AsyncStorage, uma biblioteca simples e eficaz para armazenamento local assíncrono, ideal para a abordagem NoSQL deste projeto.
-A modelagem foi aprimorada para contemplar incrementos
-futuros. As informações das tarefas serão armazenadas como uma lista de
-objetos, onde cada objeto representa uma tarefa com o seguinte esquema
-(schema):
 
-Schema de uma Tarefa:
+A modelagem foi aprimorada para contemplar incrementos futuros. As informações das tarefas serão armazenadas como uma lista de objetos, onde cada objeto representa uma tarefa com o seguinte esquema (schema):
+Schema de uma Tarefa
 
 [
   {
@@ -94,7 +86,7 @@ Schema de uma Tarefa:
   }
 ]
 
-🚀 Atualizações desde o último Checkpoint
+**Atualizações desde o último Checkpoint**
 
 Este Checkpoint 2 focou em implementar o roteamento, a estilização e a composição da aplicação, transformando o protótipo do Figma em uma versão funcional e navegável.
 I. Recursos e Módulos Aplicados
@@ -113,7 +105,7 @@ Roteamento de Telas
 expo-router
 	
 
-Configuração do app/_layout.jsx para gerenciar as rotas / (Tela Principal), /add (Adicionar Tarefa) e /settings (Configurações).
+Configuração do app/_layout.jsx para gerenciar as rotas / (Principal), /add e /settings.
 
 Estilização
 	
@@ -121,7 +113,7 @@ Estilização
 StyleSheet (React Native)
 	
 
-Estilização das 3 telas e uso da paleta de cores verde/cinza definida no planejamento.
+Estilização das 3 telas e aplicação da paleta de cores consistente (Verde e Cinza).
 
 Estado Dinâmico
 	
@@ -129,15 +121,33 @@ Estado Dinâmico
 useState (React Hooks)
 	
 
-Na tela principal (app/index.jsx), usado para armazenar a lista de tarefas, permitindo marcar/desmarcar e excluir tarefas de teste dinamicamente.
+Na tela principal (app/index.jsx), usado para armazenar a lista de tarefas e simular a interação dinâmica (marcar/desmarcar e excluir).
 II. Conceitos de Componentes Reutilizáveis
 
-Os conceitos de Boas Práticas para a Criação de Componentes Reutilizáveis foram aplicados na criação de dois componentes customizados, que foram criados na pasta components/ e utilizados nas telas:
+Os conceitos de Boas Práticas para Componentes Reutilizáveis foram aplicados em dois componentes customizados, criados na pasta components/:
 
-    Componente <TaskCard /> (Utilizado em app/index.jsx):
+Componente
+	
 
-        Conceito: Separação de Preocupações (Single Responsibility). É responsável apenas por renderizar o layout de uma única tarefa, recebendo dados e funções de manipulação (onToggle, onDelete) via props.
+Conceito Aplicado
+	
 
-    Componente <CustomButton /> (Utilizado em app/add.jsx):
+Explicação
 
-        Conceito: Passagem de Dados via Props. Recebe o texto do botão (title) e a função de clique (onPress), tornando-o um botão primário reutilizável em todo o aplicativo.
+<TaskCard />
+	
+
+Separação de Preocupações
+	
+
+Responsável apenas por renderizar o layout de uma tarefa individual, recebendo dados e funções de manipulação (onToggle, onDelete) via props.
+
+<CustomButton />
+	
+
+Passagem de Dados via Props
+	
+
+Componente de botão primário, que recebe o texto (title) e a função de clique (onPress), sendo facilmente reutilizado (ex: tela /add).
+
+Link para o Vídeo de Demonstração (Até 1 minuto)
