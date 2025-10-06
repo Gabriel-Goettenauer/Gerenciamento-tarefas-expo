@@ -1,59 +1,39 @@
-import FontAwesome from '@expo/vector-icons/FontAwesome';
-import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
-import { useFonts } from 'expo-font';
+// Este arquivo configura as opções de navegação (cabeçalhos) para todo o app.
 import { Stack } from 'expo-router';
-import * as SplashScreen from 'expo-splash-screen';
-import { useEffect } from 'react';
-import 'react-native-reanimated';
-
-import { useColorScheme } from '@/components/useColorScheme';
-
-export {
-  // Catch any errors thrown by the Layout component.
-  ErrorBoundary,
-} from 'expo-router';
-
-export const unstable_settings = {
-  // Ensure that reloading on `/modal` keeps a back button present.
-  initialRouteName: '(tabs)',
-};
-
-// Prevent the splash screen from auto-hiding before asset loading is complete.
-SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
-  const [loaded, error] = useFonts({
-    SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
-    ...FontAwesome.font,
-  });
-
-  // Expo Router uses Error Boundaries to catch errors in the navigation tree.
-  useEffect(() => {
-    if (error) throw error;
-  }, [error]);
-
-  useEffect(() => {
-    if (loaded) {
-      SplashScreen.hideAsync();
-    }
-  }, [loaded]);
-
-  if (!loaded) {
-    return null;
-  }
-
-  return <RootLayoutNav />;
-}
-
-function RootLayoutNav() {
-  const colorScheme = useColorScheme();
-
   return (
-    <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <Stack>
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="modal" options={{ presentation: 'modal' }} />
-      </Stack>
-    </ThemeProvider>
+    // Stack Navigator para navegação linear
+    <Stack>
+      {/* Opções específicas para a Tela Principal (index) */}
+      <Stack.Screen
+        name="index"
+        options={{
+          title: 'ToDoApp',
+          headerShown: false, // Esconde o cabeçalho padrão, pois usaremos um personalizado na tela
+        }}
+      />
+      
+      {/* Opções específicas para a Tela de Adicionar Tarefa (add) */}
+      <Stack.Screen
+        name="add"
+        options={{
+          title: 'Adicionar nova tarefa',
+          presentation: 'modal', // Faz a tela subir como um modal
+        }}
+      />
+
+      {/* Opções específicas para a Tela de Configurações (settings) */}
+      <Stack.Screen
+        name="settings"
+        options={{
+          title: 'Configurações',
+        }}
+      />
+
+      {/* REMOVIDO: A rota "detailed" foi removida para eliminar o aviso, 
+        já que o arquivo correspondente não foi criado.
+      */}
+    </Stack>
   );
 }
