@@ -1,12 +1,10 @@
-// Tela principal que exibirá a lista de tarefas
 import { View, Text, StyleSheet, TouchableOpacity, FlatList } from 'react-native';
 import { Link } from 'expo-router';
 import { useState } from 'react';
 
-// Importa o componente personalizado TaskCard
+
 import TaskCard from '../components/TaskCard';
 
-// Dados fake iniciais
 const initialTasks = [
   { id: '1', title: 'Reunião 14 hrs', isDone: false, description: 'Preparar a apresentação.' },
   { id: '2', title: 'Remédio', isDone: true, description: 'Tomar o da manhã.' },
@@ -15,10 +13,8 @@ const initialTasks = [
 ];
 
 export default function IndexScreen() {
-  // Estado para gerenciar a lista de tarefas
   const [tasks, setTasks] = useState(initialTasks);
 
-  // Lógica para marcar/desmarcar a tarefa
   const toggleTask = (id) => {
     setTasks(currentTasks => 
       currentTasks.map(task => 
@@ -27,19 +23,16 @@ export default function IndexScreen() {
     );
   };
 
-  // Lógica para excluir a tarefa
   const deleteTask = (id) => {
     setTasks(currentTasks => currentTasks.filter(task => task.id !== id));
   };
 
-  // Componente para renderizar cada item na FlatList
   const renderItem = ({ item }) => (
     <TaskCard
       title={item.title}
       isDone={item.isDone}
       onToggle={() => toggleTask(item.id)}
       onDelete={() => deleteTask(item.id)}
-      // Você pode envolver isso em um <Link> se quiser navegar para a tela detalhada
     />
   );
 
@@ -105,7 +98,7 @@ const styles = StyleSheet.create({
   },
   taskList: {
     paddingHorizontal: 20,
-    paddingBottom: 100, // Garante espaço para o FAB
+    paddingBottom: 100, 
   },
   emptyText: {
     textAlign: 'center',
