@@ -1,8 +1,3 @@
-Ah, você quer o texto completo do `README.md` **aqui no chat**, mas com toda a formatação Markdown visível (com `**`, `*`, `[]`, etc.)\! Sem problemas. Isso é útil para copiar e colar rapidamente.
-
-Aqui está o conteúdo do arquivo `README.md` exatamente como ele está formatado:
-
-```markdown
 # ToDoApp - Gerenciador de Tarefas Diárias
 
 ## Sobre o App
@@ -11,37 +6,31 @@ Este **aplicativo móvel**, chamado **ToDoApp**, foi desenvolvido para as plataf
 
 ---
 
-## Funcionalidades Prioritárias
+## Funcionalidades Implementadas
 
-As seguintes funcionalidades são consideradas **essenciais** e serão implementadas como prioridade neste projeto:
+As seguintes funcionalidades foram implementadas neste projeto e serão demonstradas:
 
-* **Criar novas tarefas:** Adicionar novas tarefas com título, descrição e data de criação.
-
+* **Criar novas tarefas:** Adicionar novas tarefas com título e descrição.
 * **Visualizar lista de tarefas:** Exibir todas as tarefas cadastradas na tela principal.
-
-* **Marcar como concluída:** Permitir que o usuário marque tarefas como feitas.
-
+* **Marcar/Desmarcar como concluída:** Permitir que o usuário altere o status da tarefa.
+* **Editar tarefas:** Permitir a edição do título e da descrição de uma tarefa existente.
 * **Excluir tarefas:** Oferecer a opção de remover tarefas da lista.
-
-* **Persistência local:** Salvar os dados das tarefas no dispositivo para que não sejam perdidos ao fechar o app.
+* **Persistência local:** Salvar os dados das tarefas no dispositivo usando AsyncStorage.
+* **Tema Dinâmico (Dark Mode):** Opção de alternar entre tema claro e escuro, com persistência da preferência.
 
 ## Trabalhos Futuros (*Funcionalidades Adicionais*)
 
 * Adicionar **datas de vencimento** para cada tarefa.
-
 * Implementar a **categorização** de tarefas (*trabalho, pessoal, estudos*).
-
 * Configurar **notificações** para tarefas importantes.
-
 * Sincronizar dados com um **banco de dados remoto** (como o Firebase) para acesso em múltiplos dispositivos.
-
 * Implementar um sistema de **login e cadastro**.
 
 ---
 
 ## Protótipos de Tela
 
-Os protótipos de tela foram criados no **Figma** para demonstrar o fluxo de navegação e o design da interface. O design foi aprimorado para incluir o fluxo de edição e exclusão de tarefas, além de uma tela de configurações, conforme o feedback.
+Os protótipos de tela foram criados no **Figma** para demonstrar o fluxo de navegação e o design da interface.
 
 > [Protótipo do ToDoApp no Figma](https://www.figma.com/design/XZQFp2gj0cUmtXzecB2hyq/Untitled?node-id=0-1&t=KhjqaeZucFzSup4O-1)
 
@@ -49,61 +38,47 @@ Os protótipos de tela foram criados no **Figma** para demonstrar o fluxo de nav
 
 ## Planejamento de Sprints
 
-O desenvolvimento do **ToDoApp** será dividido em sprints de duas semanas para garantir um progresso contínuo e organizado.
+O desenvolvimento do **ToDoApp** foi dividido em sprints para garantir um progresso contínuo e organizado.
 
 ### Sprint 1: Configuração e Interface (22/09 a 30/09) - **CONCLUÍDA**
 
 * \[x\] **Configuração:** Instalação do Expo e bibliotecas essenciais (*AsyncStorage*).
-
 * \[x\] **Design da interface:** Construção da estrutura das telas principal e de adição de tarefas.
-
 * \[x\] **Componentes:** Criação dos componentes reutilizáveis, como o item da lista de tarefas e o botão flutuante.
-
 * \[x\] **Navegação:** Implementação da navegação entre a tela principal e a de adicionar tarefa.
 
-### Sprint 2: Funcionalidades Essenciais (30/09 a 20/10)
+### Sprint 2: Funcionalidades Essenciais (30/09 a 20/10) - **CONCLUÍDA**
 
-* \[ \] **CRUD Básico:** Implementação da lógica para criar, visualizar, marcar como concluída e excluir tarefas.
+* \[x\] **CRUD Básico:** Implementação completa da lógica para **Criar**, **Visualizar**, **Marcar/Desmarcar** e **Excluir** tarefas.
+* \[x\] **Persistência:** Integração com o *AsyncStorage* para salvar os dados no dispositivo.
+* \[x\] **Funcionalidade de Edição (Adição não prevista):** Implementação da edição de título e descrição de tarefas existentes.
+* \[x\] **Feedback visual:** Adicionar animações ou mudanças de estado na interface (*ex: riscar o texto de uma tarefa concluída*).
 
-* \[ \] **Persistência:** Integração com o *AsyncStorage* para salvar os dados no dispositivo.
+### Sprint 3: Melhorias e Finalização (20/10 a 10/11) - **EM ANDAMENTO**
 
-* \[ \] **Feedback visual:** Adicionar animações ou mudanças de estado na interface (*ex: riscar o texto de uma tarefa concluída*).
-
-### Sprint 3: Melhorias e Funcionalidades Adicionais (20/10 a 10/11)
-
-* \[ \] **Funcionalidades avançadas:** Implementação da prioridade e da categoria nas tarefas.
-
-* \[ \] **Melhorias na UX/UI:** Adição de funcionalidades de edição de tarefas e aprimoramento dos estilos.
-
-* \[ \] **Testes:** Realização de testes de usabilidade e depuração do aplicativo.
+* \[x\] **Tema Dinâmico (Dark Mode - Nova Tarefa):** Implementação da tela de **Configurações** (`/settings`) e da lógica para alternar entre os temas Claro e Escuro, com persistência da preferência.
+* \[ \] **Validações:** Adicionar validações de formulário (ex: título obrigatório) e feedback de erro. (*Falta Implementar*)
+* \[ \] **Finalização/Prevenção de Erros:** Ajuste fino da UX, correções de bugs de layout e tratamento de erros do sistema.
 
 ---
 
 ## Modelagem do Banco de Dados
 
-Para a persistência de dados local, utilizaremos o **AsyncStorage**, uma biblioteca simples e eficaz para armazenamento local assíncrono. As informações das tarefas serão armazenadas como uma lista de objetos, onde cada objeto representa uma tarefa com o seguinte esquema (*schema*):
+Para a persistência de dados local, utilizamos o **AsyncStorage**. As informações das tarefas são armazenadas como uma lista de objetos, onde cada objeto representa uma tarefa com o seguinte esquema.
 
-### Schema de uma Tarefa
+> **Justificativa de Alteração:** A modelagem inicial foi simplificada na implementação, removendo campos de *Prioridade*, *Categoria* e *Data*, que foram movidos para a seção de Trabalhos Futuros, focando no essencial para o CRUD básico (ID, Título, Descrição e Concluída).
 
-```
+### Schema de uma Tarefa (Executado)
 
+```javascript
 [
-{
-"id": "uuid-gerado-automaticamente",
-"titulo": "Título da Tarefa",
-"descricao": "Uma breve descrição da tarefa.",
-"concluida": false,
-"prioridade": "média",
-"categoria": "pessoal",
-"dataCriacao": "2025-09-08T14:30:00Z",
-"dataConclusao": null
-}
+  {
+    "id": "string-uuid-unico",
+    "titulo": "Título da Tarefa",
+    "descricao": "Uma breve descrição da tarefa (opcional).",
+    "concluida": true | false
+  }
 ]
-
-```
-
----
-
 ## 🚀 Atualizações desde o último Checkpoint
 
 Este Checkpoint 2 focou em implementar o **roteamento, a estilização e a composição** da aplicação, transformando o protótipo do Figma em uma versão funcional e navegável.
@@ -127,4 +102,18 @@ Os conceitos de **Boas Práticas para Componentes Reutilizáveis** foram aplicad
 
 [**Link para o Vídeo de Demonstração (Até 1 minuto)**] https://youtube.com/shorts/L238wVDC6OA?feature=share
 ```
+Atualizações desde o último Checkpoint
 
+I. Recursos e Módulos Aplicados
+
+Recurso	Módulo / Biblioteca	Onde Foi Aplicado
+Persistência de Dados	@react-native-async-storage/async-storage	Funções de CRUD (Create, Read, Update, Delete) em utils/TaskStorage.js.
+Roteamento de Telas	expo-router	Navegação completa entre index, add (Criar/Editar) e settings.
+Tema Dinâmico	React Context API e useColorScheme	Implementação do ThemeContext para gerenciar o estado global do tema.
+
+II. Conceitos de Desenvolvimento
+
+Conceito	Explicação
+CRUD Completo	Todas as operações de Create, Read, Update e Delete foram implementadas, incluindo a função de edição e a atualização de status (marcar/desmarcar).
+Separação de Preocupações	A lógica de persistência e manipulação de dados está isolada em utils/TaskStorage.js, e a lógica de tema está em app/ThemeContext.jsx.
+Modelagem de Dados	Utilização de um array de objetos no AsyncStorage para armazenar as tarefas, indexadas por um uuid único.

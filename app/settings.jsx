@@ -1,84 +1,130 @@
-// Tela para configurações do app (Modo Escuro e Sobre o App)
-import { View, Text, StyleSheet, Switch, TouchableOpacity } from 'react-native';
-import { Stack } from 'expo-router';
-import { useState } from 'react';
+import React from 'react';
+import { View, Text, StyleSheet, Switch, ScrollView, TouchableOpacity } from 'react-native';
+import { router } from 'expo-router';
+import { Feather } from '@expo/vector-icons';
+import { useTheme } from './ThemeContext'; 
 
 export default function SettingsScreen() {
-  const [isDarkMode, setIsDarkMode] = useState(false);
+  const { theme, isDarkMode, toggleTheme } = useTheme(); 
+
+  const dynamicStyles = StyleSheet.create({
+    container: {
+        flex: 1,
+        backgroundColor: theme.background,
+    },
+    headerTitle: {
+        color: theme.text,
+        fontSize: 20,
+        fontWeight: 'bold',
+    },
+    card: {
+        backgroundColor: theme.cardBackground,
+    },
+    sectionTitle: {
+        color: theme.secondaryText,
+    },
+    settingText: {
+        color: theme.text,
+    },
+    aboutText: {
+        color: theme.secondaryText,
+    },
+    footerText: {
+        color: theme.text,
+    }
+  });
+
 
   return (
-    <View style={styles.container}>
-      {/* Personaliza o cabeçalho desta tela */}
-      <Stack.Screen
-        options={{
-          headerTitle: 'Configurações',
-        }}
-      />
-      
-      {/* Opção de Modo Escuro */}
-      <View style={styles.settingItem}>
-        <Text style={styles.settingText}>Modo Escuro</Text>
-        <Switch
-          trackColor={{ false: "#E0E0E0", true: "#4CAF50" }}
-          thumbColor={isDarkMode ? "#FFFFFF" : "#F4F3F4"}
-          ios_backgroundColor="#E0E0E0"
-          onValueChange={setIsDarkMode}
-          value={isDarkMode}
-        />
+    <View style={[styles.container, dynamicStyles.container]}>
+      {/* Seção do Cabeçalho */}
+      <View style={styles.header}>
+        <TouchableOpacity onPress={() => router.back()} style={styles.backButton}>
+          <Feather name="arrow-left" size={24} color={theme.text} /> 
+        </TouchableOpacity>
+        <Text style={dynamicStyles.headerTitle}>Configurações</Text>
+        <View style={{ width: 30 }} /> 
       </View>
-      
-      {/* Opção Sobre o App */}
-      <TouchableOpacity style={styles.settingItem}>
-        <View>
-          <Text style={styles.settingText}>Sobre o App</Text>
-          <Text style={styles.versionText}>Versão: 1.0.0</Text>
+
+      <ScrollView style={styles.scrollContent}>
+        
+        {/* Card de Configurações */}
+        <View style={[styles.card, dynamicStyles.card]}>
+            <Text style={[styles.sectionTitle, dynamicStyles.sectionTitle]}>Beta</Text>
+            
+            <View style={styles.settingItem}>
+                <Text style={[styles.settingText, dynamicStyles.settingText]}>Dark mode</Text>
+                <Switch
+                    // Usa cores dinâmicas e a função toggleTheme
+                    trackColor={{ false: theme.secondaryText, true: theme.primaryAccent }}
+                    thumbColor={theme.cardBackground}
+                    onValueChange={toggleTheme}
+                    value={isDarkMode}
+                />
+            </View>
         </View>
-      </TouchableOpacity>
-      
-      {/* Texto descritivo para o requisito de 'Sobre o App' */}
-      <View style={styles.aboutContainer}>
-        <Text style={styles.aboutText}>
-          O ToDoApp é um gerenciador de tarefas intuitivo e minimalista, 
-          desenvolvido para ajudar você a organizar o seu dia a dia.
-          Com ele, é possível criar, gerenciar e acompanhar suas tarefas.
-        </Text>
+
+        {/* Card Sobre o App */}
+        <View style={[styles.card, dynamicStyles.card]}>
+            <Text style={[styles.sectionTitle, dynamicStyles.sectionTitle]}>Sobre o App</Text>
+            <Text style={[styles.aboutText, dynamicStyles.aboutText]}>
+                O ToDoApp é um gerenciador de tarefas intuitivo e minimalista, 
+                desenvolvido para ajudar você a organizar o seu dia a dia. 
+                Com ele, é possível criar, gerenciar e acompanhar suas 
+                tarefas de forma simples, garantindo mais produtividade e foco.
+            </Text>
+            <Text style={[styles.versionText, dynamicStyles.sectionTitle]}>Versão: 1.0.0</Text>
+        </View>
+
+      </ScrollView>
+
+      {/* Footer com a Logo */}
+      <View style={styles.footer}>
+        <Text style={[styles.footerText, dynamicStyles.footerText]}>ToDoApp</Text>
+        <Text style={{ fontSize: 24, marginLeft: 5 }}> 📋</Text> 
       </View>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#FFFFFF', // Fundo branco
-    padding: 20,
+  header: {
+    padding: 15,
+    paddingTop: 40,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginBottom: 20,
+  },
+  backButton: {
+    padding: 5,
+  },
+  scrollContent: {
+    paddingHorizontal: 20,
+  },
+  card: {
+    borderRadius: 10,
+    padding: 15,
+    marginBottom: 20,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.1,
+    shadowRadius: 1.41,
+    elevation: 2,
   },
   settingItem: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    paddingVertical: 15,
-    borderBottomWidth: 1,
-    borderBottomColor: '#EEEEEE',
-  },
-  settingText: {
-    fontSize: 18,
-    color: '#424242',
+    paddingVertical: 8,
   },
   versionText: {
-    fontSize: 14,
-    color: '#757575',
-    marginTop: 2,
+    marginTop: 5,
   },
-  aboutContainer: {
-    marginTop: 30,
-    padding: 15,
-    backgroundColor: '#F5F5F5',
-    borderRadius: 8,
+  footer: {
+    padding: 20,
+    alignItems: 'center',
+    flexDirection: 'row',
+    justifyContent: 'center',
   },
-  aboutText: {
-    fontSize: 14,
-    color: '#424242',
-    lineHeight: 20,
-  }
 });
