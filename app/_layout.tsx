@@ -1,32 +1,14 @@
+import React from 'react';
 import { Stack } from 'expo-router';
+// Importa o novo provedor de tema
+import { ThemeProvider } from './ThemeContext'; 
 
+// Esta é a raiz do seu aplicativo
 export default function RootLayout() {
   return (
-    
-    <Stack>
-      <Stack.Screen
-        name="index"
-        options={{
-          title: 'ToDoApp',
-          headerShown: false, 
-        }}
-      />
-      
-      <Stack.Screen
-        name="add"
-        options={{
-          title: 'Adicionar nova tarefa',
-          presentation: 'modal', 
-        }}
-      />
-
-      <Stack.Screen
-        name="settings"
-        options={{
-          title: 'Configurações',
-        }}
-      />
-
-    </Stack>
+    // Envolve todo o aplicativo com o ThemeProvider
+    <ThemeProvider>
+      <Stack screenOptions={{ headerShown: false }} />
+    </ThemeProvider>
   );
 }

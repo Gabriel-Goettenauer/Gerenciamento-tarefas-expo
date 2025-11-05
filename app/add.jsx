@@ -3,16 +3,47 @@ import { View, Text, StyleSheet, TextInput, TouchableOpacity, Alert, ActivityInd
 import { addTask, updateTask, getTaskById } from '../utils/TaskStorage';
 import { router, useLocalSearchParams } from 'expo-router';
 import { Feather } from '@expo/vector-icons'; 
+import { useTheme } from './ThemeContext'; // Importa o hook do tema
 
 export default function AddTaskScreen() {
-  // Pega os parâmetros passados na navegação (se for uma edição, terá o 'id')
+  const { theme } = useTheme(); // Puxa o tema
   const { id } = useLocalSearchParams(); 
   
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  const [isEditing, setIsEditing] = useState(false); // Novo estado para saber se está editando
+  const [isEditing, setIsEditing] = useState(false);
   const [error, setError] = useState('');
+
+  // Estilos dinâmicos
+  const dynamicStyles = StyleSheet.create({
+    container: {
+        backgroundColor: theme.background,
+    },
+    header: {
+        backgroundColor: theme.header,
+    },
+    headerTitle: {
+        color: theme.text,
+    },
+    backButton: {
+        color: theme.text,
+    },
+    label: {
+        color: theme.text,
+    },
+    input: {
+        backgroundColor: theme.cardBackground,
+        borderColor: theme.secondaryText,
+        color: theme.text,
+    },
+    saveButton: {
+        backgroundColor: theme.primaryAccent,
+    },
+    saveButtonDisabled: {
+        backgroundColor: theme.secondaryText,
+    }
+  });
 
   // Efeito para carregar a tarefa se um ID for passado (Modo Edição)
   useEffect(() => {
@@ -46,16 +77,13 @@ export default function AddTaskScreen() {
     setIsLoading(true);
     try {
       if (isEditing) {
-        // Se estiver editando, chama updateTask
         await updateTask(id, title.trim(), description.trim());
         Alert.alert("Sucesso", "Tarefa editada com sucesso!");
       } else {
-        // Caso contrário, chama addTask
         await addTask(title.trim(), description.trim());
         Alert.alert("Sucesso", "Tarefa cadastrada com sucesso!");
       }
       
-      // Sucesso: Volta para a tela principal
       router.back(); 
 
     } catch (e) {
@@ -70,23 +98,24 @@ export default function AddTaskScreen() {
   const buttonText = isEditing ? 'Salvar Edição' : 'Salvar Tarefa';
 
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, dynamicStyles.container]}>
       {/* Seção do Cabeçalho */}
-      <View style={styles.header}>
+      <View style={[styles.header, dynamicStyles.header]}>
         <TouchableOpacity onPress={() => router.back()} style={styles.backButton}>
-          <Feather name="arrow-left" size={24} color="#FFF" />
+          <Feather name="arrow-left" size={24} color={dynamicStyles.backButton.color} />
         </TouchableOpacity>
-        <Text style={styles.headerTitle}>{headerText}</Text>
+        <Text style={[styles.headerTitle, dynamicStyles.headerTitle]}>{headerText}</Text>
         <View style={{ width: 30 }} /> 
       </View>
 
       <View style={styles.form}>
         
         {/* Input de Título */}
-        <Text style={styles.label}>Título (Obrigatório)</Text>
+        <Text style={[styles.label, dynamicStyles.label]}>Título (Obrigatório)</Text>
         <TextInput
-          style={[styles.input, error && styles.inputError]}
+          style={[styles.input, dynamicStyles.input, error && styles.inputError]}
           placeholder="Ex: Reunião com o orientador"
+          placeholderTextColor={theme.secondaryText}
           value={title}
           onChangeText={setTitle}
         />
@@ -94,10 +123,11 @@ export default function AddTaskScreen() {
 
 
         {/* Input de Descrição */}
-        <Text style={styles.label}>Descrição (Opcional)</Text>
+        <Text style={[styles.label, dynamicStyles.label]}>Descrição (Opcional)</Text>
         <TextInput
-          style={[styles.input, styles.textArea]}
+          style={[styles.input, dynamicStyles.input, styles.textArea]}
           placeholder="Detalhes da reunião sobre o TCC..."
+          placeholderTextColor={theme.secondaryText}
           value={description}
           onChangeText={setDescription}
           multiline
@@ -106,7 +136,7 @@ export default function AddTaskScreen() {
 
         {/* Botão de Salvar */}
         <TouchableOpacity
-          style={[styles.saveButton, isLoading && styles.saveButtonDisabled]}
+          style={[styles.saveButton, dynamicStyles.saveButton, isLoading && dynamicStyles.saveButtonDisabled]}
           onPress={handleSave}
           disabled={isLoading}
         >
@@ -121,14 +151,13 @@ export default function AddTaskScreen() {
   );
 }
 
+// Estilos estáticos
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#FAFAFA',
   },
   header: {
     padding: 15,
-    backgroundColor: '#4CAF50', // Cor do seu header
     paddingTop: 40,
     elevation: 4,
     shadowColor: '#000',
@@ -140,7 +169,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   headerTitle: {
-    color: '#FFF',
     fontSize: 20,
     fontWeight: 'bold',
   },
@@ -153,20 +181,17 @@ const styles = StyleSheet.create({
   label: {
     fontSize: 16,
     fontWeight: 'bold',
-    color: '#424242',
     marginTop: 15,
     marginBottom: 5,
   },
   input: {
     borderWidth: 1,
-    borderColor: '#BDBDBD',
     borderRadius: 6,
     padding: 12,
     fontSize: 16,
-    backgroundColor: '#FFF',
   },
   inputError: {
-    borderColor: '#F44336',
+    borderColor: '#F44336', // Cor de erro é mantida
   },
   textArea: {
     height: 100,
@@ -177,15 +202,11 @@ const styles = StyleSheet.create({
     marginTop: 5,
   },
   saveButton: {
-    backgroundColor: '#2196F3',
     padding: 15,
     borderRadius: 8,
     marginTop: 30,
     alignItems: 'center',
     elevation: 3,
-  },
-  saveButtonDisabled: {
-    backgroundColor: '#90CAF9',
   },
   saveButtonText: {
     color: '#FFF',
