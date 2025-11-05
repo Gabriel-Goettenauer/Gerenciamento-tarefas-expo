@@ -1,28 +1,18 @@
-// Componente reutilizável para exibir uma única tarefa na lista
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
-
-// Propriedades esperadas:
-// title (string): Título da tarefa
-// isDone (boolean): Se a tarefa está concluída
-// onToggle (function): Função para marcar/desmarcar
-// onDelete (function): Função para excluir a tarefa
 
 export default function TaskCard({ title, isDone, onToggle, onDelete }) {
   return (
     <View style={styles.cardContainer}>
       <TouchableOpacity style={styles.infoWrapper} onPress={onToggle}>
-        {/* Círculo de Conclusão */}
         <View style={[styles.circle, isDone ? styles.circleDone : styles.circlePending]}>
           {isDone && <Text style={styles.checkIcon}>✓</Text>}
         </View>
         
-        {/* Título da Tarefa */}
         <Text style={[styles.title, isDone && styles.titleDone]}>
           {title}
         </Text>
       </TouchableOpacity>
       
-      {/* Botão de Excluir */}
       <TouchableOpacity style={styles.deleteButton} onPress={onDelete}>
         <Text style={styles.deleteIcon}>🗑️</Text>
       </TouchableOpacity>
@@ -60,10 +50,10 @@ const styles = StyleSheet.create({
     marginRight: 10,
   },
   circlePending: {
-    borderColor: '#BDBDBD', // Cinza para pendente
+    borderColor: '#BDBDBD', 
   },
   circleDone: {
-    borderColor: '#4CAF50', // Verde para concluído
+    borderColor: '#4CAF50', 
     backgroundColor: '#4CAF50',
   },
   checkIcon: {
@@ -85,6 +75,6 @@ const styles = StyleSheet.create({
   },
   deleteIcon: {
     fontSize: 20,
-    color: '#FF6347', // Laranja/Vermelho suave para ação de exclusão
+    color: '#FF6347',
   }
 });

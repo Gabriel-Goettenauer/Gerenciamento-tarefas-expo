@@ -1,153 +1,130 @@
-**ToDoApp - Gerenciador de Tarefas Diárias**
+Ah, você quer o texto completo do `README.md` **aqui no chat**, mas com toda a formatação Markdown visível (com `**`, `*`, `[]`, etc.)\! Sem problemas. Isso é útil para copiar e colar rapidamente.
 
-Sobre o app
+Aqui está o conteúdo do arquivo `README.md` exatamente como ele está formatado:
 
-Este aplicativo móvel, chamado ToDoApp, foi desenvolvido para as plataformas Android e iOS usando o Expo e a linguagem de programação JavaScript (com React Native). O objetivo principal é ajudar usuários a organizar e gerenciar suas tarefas diárias de forma simples e eficaz, oferecendo uma interface limpa e intuitiva para focar na produtividade.
-Funcionalidades Prioritárias
+```markdown
+# ToDoApp - Gerenciador de Tarefas Diárias
 
-As seguintes funcionalidades são consideradas essenciais e serão implementadas como prioridade neste projeto:
+## Sobre o App
 
-    Criar novas tarefas: Adicionar novas tarefas com título, descrição e data de criação.
+Este **aplicativo móvel**, chamado **ToDoApp**, foi desenvolvido para as plataformas **Android** e **iOS** usando o **Expo** e a linguagem de programação **JavaScript (com React Native)**. O objetivo principal é ajudar usuários a organizar e gerenciar suas tarefas diárias de forma simples e eficaz, oferecendo uma interface limpa e intuitiva para focar na produtividade.
 
-    Visualizar lista de tarefas: Exibir todas as tarefas cadastradas na tela principal.
+---
 
-    Marcar como concluída: Permitir que o usuário marque tarefas como feitas.
+## Funcionalidades Prioritárias
 
-    Excluir tarefas: Oferecer a opção de remover tarefas da lista.
+As seguintes funcionalidades são consideradas **essenciais** e serão implementadas como prioridade neste projeto:
 
-    Persistência local: Salvar os dados das tarefas no dispositivo para que não sejam perdidos ao fechar o app.
+* **Criar novas tarefas:** Adicionar novas tarefas com título, descrição e data de criação.
 
-Trabalhos Futuros (Funcionalidades Adicionais)
+* **Visualizar lista de tarefas:** Exibir todas as tarefas cadastradas na tela principal.
 
-    Adicionar datas de vencimento para cada tarefa.
+* **Marcar como concluída:** Permitir que o usuário marque tarefas como feitas.
 
-    Implementar a categorização de tarefas (trabalho, pessoal, estudos).
+* **Excluir tarefas:** Oferecer a opção de remover tarefas da lista.
 
-    Configurar notificações para tarefas importantes.
+* **Persistência local:** Salvar os dados das tarefas no dispositivo para que não sejam perdidos ao fechar o app.
 
-    Sincronizar dados com um banco de dados remoto (como o Firebase) para acesso em múltiplos dispositivos.
+## Trabalhos Futuros (*Funcionalidades Adicionais*)
 
-    Implementar um sistema de login e cadastro.
+* Adicionar **datas de vencimento** para cada tarefa.
 
-Protótipos de tela
+* Implementar a **categorização** de tarefas (*trabalho, pessoal, estudos*).
 
-Os protótipos de tela foram criados no Figma para demonstrar o fluxo de navegação e o design da interface. O design foi aprimorado para incluir o fluxo de edição e exclusão de tarefas, além de uma tela de configurações, conforme o feedback.
+* Configurar **notificações** para tarefas importantes.
 
-Protótipo do ToDoApp no Figma
-https://www.figma.com/design/XZQFp2gj0cUmtXzecB2hyq/Untitled?node-id=0-1&t=WcLTV2oDFQ423U9V-1
+* Sincronizar dados com um **banco de dados remoto** (como o Firebase) para acesso em múltiplos dispositivos.
 
+* Implementar um sistema de **login e cadastro**.
 
-**Planejamento de sprints**
+---
 
-O desenvolvimento do ToDoApp será dividido em sprints de duas semanas para garantir um progresso contínuo e organizado.
-Sprint 1: Configuração e Interface (22/09 a 30/09) - CONCLUÍDA
+## Protótipos de Tela
 
-    [x] Configuração: Instalação do Expo e bibliotecas essenciais (AsyncStorage).
+Os protótipos de tela foram criados no **Figma** para demonstrar o fluxo de navegação e o design da interface. O design foi aprimorado para incluir o fluxo de edição e exclusão de tarefas, além de uma tela de configurações, conforme o feedback.
 
-    [x] Design da interface: Construção da estrutura das telas principal e de adição de tarefas.
+> [Protótipo do ToDoApp no Figma](https://www.figma.com/design/XZQFp2gj0cUmtXzecB2hyq/Untitled?node-id=0-1&t=KhjqaeZucFzSup4O-1)
 
-    [x] Componentes: Criação dos componentes reutilizáveis, como o item da lista de tarefas e o botão flutuante.
+---
 
-    [x] Navegação: Implementação da navegação entre a tela principal e a de adicionar tarefa.
+## Planejamento de Sprints
 
-Sprint 2: Funcionalidades Essenciais (30/09 a 20/10)
+O desenvolvimento do **ToDoApp** será dividido em sprints de duas semanas para garantir um progresso contínuo e organizado.
 
-    [ ] CRUD Básico: Implementação da lógica para criar, visualizar, marcar como concluída e excluir tarefas.
+### Sprint 1: Configuração e Interface (22/09 a 30/09) - **CONCLUÍDA**
 
-    [ ] Persistência: Integração com o AsyncStorage para salvar os dados no dispositivo.
+* \[x\] **Configuração:** Instalação do Expo e bibliotecas essenciais (*AsyncStorage*).
 
-    [ ] Feedback visual: Adicionar animações ou mudanças de estado na interface (ex: riscar o texto de uma tarefa concluída).
+* \[x\] **Design da interface:** Construção da estrutura das telas principal e de adição de tarefas.
 
-Sprint 3: Melhorias e Funcionalidades Adicionais (20/10 a 10/11)
+* \[x\] **Componentes:** Criação dos componentes reutilizáveis, como o item da lista de tarefas e o botão flutuante.
 
-    [ ] Funcionalidades avançadas: Implementação da prioridade e da categoria nas tarefas.
+* \[x\] **Navegação:** Implementação da navegação entre a tela principal e a de adicionar tarefa.
 
-    [ ] Melhorias na UX/UI: Adição de funcionalidades de edição de tarefas e aprimoramento dos estilos.
+### Sprint 2: Funcionalidades Essenciais (30/09 a 20/10)
 
-    [ ] Testes: Realização de testes de usabilidade e depuração do aplicativo.
+* \[ \] **CRUD Básico:** Implementação da lógica para criar, visualizar, marcar como concluída e excluir tarefas.
 
-Modelagem do banco de dados
+* \[ \] **Persistência:** Integração com o *AsyncStorage* para salvar os dados no dispositivo.
 
-Para a persistência de dados local, utilizaremos o AsyncStorage, uma biblioteca simples e eficaz para armazenamento local assíncrono, ideal para a abordagem NoSQL deste projeto.
+* \[ \] **Feedback visual:** Adicionar animações ou mudanças de estado na interface (*ex: riscar o texto de uma tarefa concluída*).
 
-A modelagem foi aprimorada para contemplar incrementos futuros. As informações das tarefas serão armazenadas como uma lista de objetos, onde cada objeto representa uma tarefa com o seguinte esquema (schema):
-Schema de uma Tarefa
+### Sprint 3: Melhorias e Funcionalidades Adicionais (20/10 a 10/11)
+
+* \[ \] **Funcionalidades avançadas:** Implementação da prioridade e da categoria nas tarefas.
+
+* \[ \] **Melhorias na UX/UI:** Adição de funcionalidades de edição de tarefas e aprimoramento dos estilos.
+
+* \[ \] **Testes:** Realização de testes de usabilidade e depuração do aplicativo.
+
+---
+
+## Modelagem do Banco de Dados
+
+Para a persistência de dados local, utilizaremos o **AsyncStorage**, uma biblioteca simples e eficaz para armazenamento local assíncrono. As informações das tarefas serão armazenadas como uma lista de objetos, onde cada objeto representa uma tarefa com o seguinte esquema (*schema*):
+
+### Schema de uma Tarefa
+
+```
 
 [
-  {
-    "id": "uuid-gerado-automaticamente",
-    "titulo": "Título da Tarefa",
-    "descricao": "Uma breve descrição da tarefa.",
-    "concluida": false,
-    "prioridade": "média",
-    "categoria": "pessoal", 
-    "dataCriacao": "2025-09-08T14:30:00Z",
-    "dataConclusao": null 
-  }
+{
+"id": "uuid-gerado-automaticamente",
+"titulo": "Título da Tarefa",
+"descricao": "Uma breve descrição da tarefa.",
+"concluida": false,
+"prioridade": "média",
+"categoria": "pessoal",
+"dataCriacao": "2025-09-08T14:30:00Z",
+"dataConclusao": null
+}
 ]
 
-**Atualizações desde o último Checkpoint**
+```
 
-Este Checkpoint 2 focou em implementar o roteamento, a estilização e a composição da aplicação, transformando o protótipo do Figma em uma versão funcional e navegável.
-I. Recursos e Módulos Aplicados
+---
 
-Recurso
-	
+## 🚀 Atualizações desde o último Checkpoint
 
-Módulo / Biblioteca
-	
+Este Checkpoint 2 focou em implementar o **roteamento, a estilização e a composição** da aplicação, transformando o protótipo do Figma em uma versão funcional e navegável.
 
-Onde Foi Aplicado
+### I. Recursos e Módulos Aplicados
 
-Roteamento de Telas
-	
+| Recurso | Módulo / Biblioteca | Onde Foi Aplicado | 
+ | ----- | ----- | ----- | 
+| **Roteamento de Telas** | `expo-router` | Configuração do `app/_layout.jsx` para gerenciar as rotas **`/`** (*Principal*), **`/add`** e **`/settings`**. | 
+| **Estilização** | `StyleSheet` (*React Native*) | Estilização das 3 telas e aplicação da paleta de cores consistente (*Verde e Cinza*). | 
+| **Estado Dinâmico** | `useState` (*React Hooks*) | Na tela principal (`app/index.jsx`), usado para armazenar a lista de tarefas e simular a **interação dinâmica** (*marcar/desmarcar e excluir*). | 
 
-expo-router
-	
+### II. Conceitos de Componentes Reutilizáveis
 
-Configuração do app/_layout.jsx para gerenciar as rotas / (Principal), /add e /settings.
+Os conceitos de **Boas Práticas para Componentes Reutilizáveis** foram aplicados em dois componentes customizados, criados na pasta `components/`:
 
-Estilização
-	
+| Componente | Conceito Aplicado | Explicação | 
+ | ----- | ----- | ----- | 
+| **`<TaskCard />`** | **Separação de Preocupações** | Responsável *apenas* por renderizar o layout de uma tarefa individual, recebendo dados e funções de manipulação (**`onToggle`**, **`onDelete`**) via *props*. | 
+| **`<CustomButton />`** | **Passagem de Dados via Props** | Componente de botão primário, que recebe o texto (**`title`**) e a função de clique (**`onPress`**), sendo facilmente reutilizado (*ex: tela `/add`*). | 
 
-StyleSheet (React Native)
-	
+[**Link para o Vídeo de Demonstração (Até 1 minuto)**] https://youtube.com/shorts/L238wVDC6OA?feature=share
+```
 
-Estilização das 3 telas e aplicação da paleta de cores consistente (Verde e Cinza).
-
-Estado Dinâmico
-	
-
-useState (React Hooks)
-	
-
-Na tela principal (app/index.jsx), usado para armazenar a lista de tarefas e simular a interação dinâmica (marcar/desmarcar e excluir).
-II. Conceitos de Componentes Reutilizáveis
-
-Os conceitos de Boas Práticas para Componentes Reutilizáveis foram aplicados em dois componentes customizados, criados na pasta components/:
-
-Componente
-	
-
-Conceito Aplicado
-	
-
-Explicação
-
-<TaskCard />
-	
-
-Separação de Preocupações
-	
-
-Responsável apenas por renderizar o layout de uma tarefa individual, recebendo dados e funções de manipulação (onToggle, onDelete) via props.
-
-<CustomButton />
-	
-
-Passagem de Dados via Props
-	
-
-Componente de botão primário, que recebe o texto (title) e a função de clique (onPress), sendo facilmente reutilizado (ex: tela /add).
-
-Link para o Vídeo de Demonstração (Até 1 minuto)

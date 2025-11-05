@@ -1,7 +1,5 @@
-// Tela para adicionar uma nova tarefa
 import { View, Text, StyleSheet, TextInput } from 'react-native';
 import { Stack, router } from 'expo-router';
-// Importa o componente personalizado CustomButton
 import CustomButton from '../components/CustomButton'; 
 
 export default function AddTaskScreen() {
@@ -26,7 +24,6 @@ export default function AddTaskScreen() {
         multiline
       />
 
-      {/* Usando o componente CustomButton */}
       <CustomButton
         title="Salvar"
         onPress={() => {
