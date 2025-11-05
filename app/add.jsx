@@ -3,10 +3,10 @@ import { View, Text, StyleSheet, TextInput, TouchableOpacity, Alert, ActivityInd
 import { addTask, updateTask, getTaskById } from '../utils/TaskStorage';
 import { router, useLocalSearchParams } from 'expo-router';
 import { Feather } from '@expo/vector-icons'; 
-import { useTheme } from './ThemeContext'; // Importa o hook do tema
+import { useTheme } from './ThemeContext';
 
 export default function AddTaskScreen() {
-  const { theme } = useTheme(); // Puxa o tema
+  const { theme } = useTheme();
   const { id } = useLocalSearchParams(); 
   
   const [title, setTitle] = useState('');
@@ -15,7 +15,6 @@ export default function AddTaskScreen() {
   const [isEditing, setIsEditing] = useState(false);
   const [error, setError] = useState('');
 
-  // Estilos dinâmicos
   const dynamicStyles = StyleSheet.create({
     container: {
         backgroundColor: theme.background,
@@ -45,7 +44,6 @@ export default function AddTaskScreen() {
     }
   });
 
-  // Efeito para carregar a tarefa se um ID for passado (Modo Edição)
   useEffect(() => {
     if (id) {
       setIsEditing(true);
@@ -63,11 +61,9 @@ export default function AddTaskScreen() {
     }
   }, [id]);
 
-  // Função que executa a validação e salva/edita a tarefa
   const handleSave = async () => {
     setError(''); 
     
-    // Validação: Título é obrigatório
     if (!title.trim()) {
       setError('O título da tarefa não pode ser vazio!');
       Alert.alert("Erro", "Por favor, preencha o campo Título."); 
@@ -151,7 +147,7 @@ export default function AddTaskScreen() {
   );
 }
 
-// Estilos estáticos
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -191,7 +187,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
   inputError: {
-    borderColor: '#F44336', // Cor de erro é mantida
+    borderColor: '#F44336', 
   },
   textArea: {
     height: 100,

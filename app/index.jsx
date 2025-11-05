@@ -1,13 +1,10 @@
 import React, { useState, useCallback } from 'react';
 import { View, Text, StyleSheet, FlatList, TouchableOpacity, Alert, ActivityIndicator, TextInput } from 'react-native';
 import { getTasks, toggleTask, deleteTask } from '../utils/TaskStorage';
-import { useFocusEffect, router } from 'expo-router'; // Removemos o Link
+import { useFocusEffect, router } from 'expo-router'; 
 import { Feather } from '@expo/vector-icons'; 
 import { useTheme } from './ThemeContext'; 
 
-// -------------------------------------------------------------------
-// Componente de Cartão de Tarefa
-// -------------------------------------------------------------------
 const TaskCard = React.memo(({ task, onToggle, onDelete }) => {
   const { theme } = useTheme(); 
   const isCompleted = task.concluida;
@@ -87,25 +84,19 @@ const TaskCard = React.memo(({ task, onToggle, onDelete }) => {
   );
 });
 
-// -------------------------------------------------------------------
-// Componente Principal
-// -------------------------------------------------------------------
 export default function IndexScreen() {
   const { theme } = useTheme(); 
   const [tasks, setTasks] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
-  // Função para navegar para a tela de adicionar tarefa
   const handleAddPress = () => {
     router.push("/add");
   };
 
-  // Função para navegar para a tela de configurações
   const handleSettingsPress = () => {
     router.push("/settings");
   };
 
-  // Estilos dinâmicos do componente principal
   const dynamicStyles = StyleSheet.create({
     container: {
         backgroundColor: theme.background,
@@ -130,8 +121,6 @@ export default function IndexScreen() {
     }
   });
 
-
-  // Função para carregar as tarefas
   const loadTasks = async () => {
     setIsLoading(true);
     const loadedTasks = await getTasks();
@@ -224,11 +213,9 @@ export default function IndexScreen() {
   );
 }
 
-// Estilos estáticos
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    // O flex: 1 é crucial para que os elementos 'absolute' se posicionem corretamente
   },
   loadingContainer: {
     flex: 1,
@@ -328,8 +315,8 @@ const styles = StyleSheet.create({
     marginLeft: 5, 
   },
   floatingButton: {
-    position: 'absolute', // ABSOLUTO é a chave
-    zIndex: 9999,        // Z-Index altíssimo para garantir que fique por cima de tudo
+    position: 'absolute', 
+    zIndex: 9999,        
     width: 60,
     height: 60,
     alignItems: 'center',

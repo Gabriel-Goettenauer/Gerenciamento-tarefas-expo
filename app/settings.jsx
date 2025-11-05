@@ -2,26 +2,23 @@ import React from 'react';
 import { View, Text, StyleSheet, Switch, ScrollView, TouchableOpacity } from 'react-native';
 import { router } from 'expo-router';
 import { Feather } from '@expo/vector-icons';
-// Importa o hook do tema
 import { useTheme } from './ThemeContext'; 
 
 export default function SettingsScreen() {
-  // Puxa o estado atual do dark mode e a função de alternância do contexto
   const { theme, isDarkMode, toggleTheme } = useTheme(); 
 
-  // Ajusta os estilos dinamicamente com base no tema
   const dynamicStyles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: theme.background, // Usa a cor de fundo do tema
+        backgroundColor: theme.background,
     },
     headerTitle: {
-        color: theme.text, // Usa a cor de texto do tema
+        color: theme.text,
         fontSize: 20,
         fontWeight: 'bold',
     },
     card: {
-        backgroundColor: theme.cardBackground, // Usa a cor do fundo do card
+        backgroundColor: theme.cardBackground,
     },
     sectionTitle: {
         color: theme.secondaryText,
@@ -91,7 +88,6 @@ export default function SettingsScreen() {
 }
 
 const styles = StyleSheet.create({
-  // Estilos estáticos que não dependem do tema
   header: {
     padding: 15,
     paddingTop: 40,
