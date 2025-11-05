@@ -1,3 +1,4 @@
+// Conteúdo FINAL e CORRETO para app/add.jsx
 import React, { useState } from 'react';
 import { View, StyleSheet, Alert } from 'react-native';
 import { Input, Button, Icon, Text } from 'react-native-elements';
@@ -10,9 +11,11 @@ export default function AddTaskScreen() {
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
+  // Função que executa a validação e salva a tarefa
   const handleSave = async () => {
     setError(''); 
     
+    // REQUISITO DE VALIDAÇÃO: Título é obrigatório
     if (!title.trim()) {
       setError('O título da tarefa não pode ser vazio!');
       Alert.alert("Erro de Validação", "Por favor, preencha o título da tarefa."); 
@@ -22,7 +25,8 @@ export default function AddTaskScreen() {
     setIsLoading(true);
     try {
       await addTask(title.trim(), description.trim());
-  
+      
+      // Sucesso: Volta para a tela principal
       router.back(); 
       
       Alert.alert("Sucesso", "Tarefa cadastrada com sucesso!");
