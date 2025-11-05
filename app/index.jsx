@@ -1,73 +1,113 @@
-import { View, Text, StyleSheet, TouchableOpacity, FlatList } from 'react-native';
-import { Link } from 'expo-router';
-import { useState } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
+import { View, Text, StyleSheet, FlatList, TouchableOpacity, Alert } from 'react-native';
+import { getTasks, toggleTask, deleteTask } from '../utils/TaskStorage';
+import { Link, useFocusEffect } from 'expo-router';
+import { ListItem, Icon, Button } from 'react-native-elements';
 
+const TaskCard = ({ task, onToggle, onDelete }) => (
+  <ListItem 
+    bottomDivider
+    containerStyle={task.concluida ? styles.taskCompleted : styles.taskPending}
+  >
+    <ListItem.Content>
+      <TouchableOpacity onPress={() => onToggle(task.id)}>
+        <ListItem.Title style={task.concluida ? styles.titleCompleted : styles.titlePending}>
+          {task.titulo}
+        </ListItem.Title>
+        <ListItem.Subtitle numberOfLines={1}>
+          {task.descricao}
+        </ListItem.Subtitle>
+      </TouchableOpacity>
+    </ListItem.Content>
+    <Icon 
+      name='delete' 
+      type='material' 
+      color='#ff0000' 
+      onPress={() => onDelete(task.id)} 
+      containerStyle={{ marginLeft: 10 }}
+    />
+  </ListItem>
+);
 
-import TaskCard from '../components/TaskCard';
-
-const initialTasks = [
-  { id: '1', title: 'Reunião 14 hrs', isDone: false, description: 'Preparar a apresentação.' },
-  { id: '2', title: 'Remédio', isDone: true, description: 'Tomar o da manhã.' },
-  { id: '3', title: 'Treinamento 42', isDone: false, description: 'Finalizar o módulo de React Native.' },
-  { id: '4', title: 'Comprar pão', isDone: false, description: 'Passar na padaria depois do trabalho.' },
-];
+const CustomButton = () => (
+  <Link href="/add" asChild>
+    <TouchableOpacity style={styles.floatingButton}>
+      <Icon name='add' type='material' color='#FFF' size={30} />
+    </TouchableOpacity>
+  </Link>
+);
 
 export default function IndexScreen() {
-  const [tasks, setTasks] = useState(initialTasks);
+  const [tasks, setTasks] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
-  const toggleTask = (id) => {
-    setTasks(currentTasks => 
-      currentTasks.map(task => 
-        task.id === id ? { ...task, isDone: !task.isDone } : task
-      )
+  const loadTasks = async () => {
+    setIsLoading(true);
+    const loadedTasks = await getTasks();
+
+    loadedTasks.sort((a, b) => a.concluida - b.concluida);
+    setTasks(loadedTasks);
+    setIsLoading(false);
+  };
+
+  useFocusEffect(
+    useCallback(() => {
+      loadTasks();
+    }, [])
+  );
+
+  const handleToggle = async (id) => {
+    const updatedTasks = await toggleTask(id);
+    setTasks(updatedTasks.sort((a, b) => a.concluida - b.concluida));
+  };
+
+  const handleDelete = (id) => {
+    Alert.alert(
+      "Confirmar Exclusão",
+      "Tem certeza que deseja excluir esta tarefa?",
+      [
+        {
+          text: "Cancelar",
+          style: "cancel"
+        },
+        {
+          text: "Excluir",
+          onPress: async () => {
+            const updatedTasks = await deleteTask(id);
+            setTasks(updatedTasks.sort((a, b) => a.concluida - b.concluida));
+          },
+          style: 'destructive'
+        }
+      ]
     );
   };
 
-  const deleteTask = (id) => {
-    setTasks(currentTasks => currentTasks.filter(task => task.id !== id));
-  };
-
-  const renderItem = ({ item }) => (
-    <TaskCard
-      title={item.title}
-      isDone={item.isDone}
-      onToggle={() => toggleTask(item.id)}
-      onDelete={() => deleteTask(item.id)}
-    />
-  );
-
+  if (isLoading) {
+    return <Text style={styles.loadingText}>Carregando Tarefas...</Text>;
+  }
 
   return (
     <View style={styles.container}>
-      {/* Cabeçalho personalizado da tela principal */}
-      <View style={styles.header}>
-        <Text style={styles.headerTitle}>ToDoApp</Text>
-        
-        {/* Botão para Configurações (Engrenagem) */}
-        <Link href="/settings" asChild>
-          <TouchableOpacity style={styles.headerButton}>
-            <Text style={styles.icon}>⚙️</Text>
-          </TouchableOpacity>
-        </Link>
-      </View>
-      
-      {/* Exibição da Lista de Tarefas (Usando FlatList para performance) */}
-      <FlatList
-        data={tasks}
-        renderItem={renderItem}
-        keyExtractor={item => item.id}
-        contentContainerStyle={styles.taskList}
-        ListEmptyComponent={() => (
-          <Text style={styles.emptyText}>Nenhuma tarefa por enquanto! 🎉</Text>
-        )}
-      />
-
-      {/* Botão Flutuante para Adicionar Tarefa */}
-      <Link href="/add" asChild>
-        <TouchableOpacity style={styles.fab}>
-          <Text style={styles.fabText}>+</Text>
-        </TouchableOpacity>
-      </Link>
+      <Text style={styles.header}>Minhas Tarefas</Text>
+      {tasks.length === 0 ? (
+        <View style={styles.emptyContainer}>
+          <Icon name='check-circle-outline' type='material' color='#6200EE' size={50} />
+          <Text style={styles.emptyText}>Nenhuma tarefa cadastrada. Adicione uma nova!</Text>
+        </View>
+      ) : (
+        <FlatList
+          data={tasks}
+          keyExtractor={(item) => item.id}
+          renderItem={({ item }) => (
+            <TaskCard 
+              task={item} 
+              onToggle={handleToggle} 
+              onDelete={handleDelete} 
+            />
+          )}
+        />
+      )}
+      <CustomButton />
     </View>
   );
 }
@@ -75,38 +115,53 @@ export default function IndexScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#E8F5E9', 
-    paddingTop: 60,
+    backgroundColor: '#f5f5f5',
   },
   header: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    paddingHorizontal: 20,
-    marginBottom: 20,
-  },
-  headerTitle: {
-    fontSize: 32,
-    fontWeight: '700',
-    color: '#424242',
-  },
-  headerButton: {
-    padding: 10,
-  },
-  icon: {
     fontSize: 24,
+    fontWeight: 'bold',
+    padding: 20,
+    textAlign: 'center',
+    backgroundColor: '#FFF',
+    borderBottomWidth: 1,
+    borderBottomColor: '#ddd',
   },
-  taskList: {
-    paddingHorizontal: 20,
-    paddingBottom: 100, 
+  loadingText: {
+    flex: 1,
+    textAlign: 'center',
+    textAlignVertical: 'center',
+    fontSize: 18,
+  },
+  emptyContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: 20,
   },
   emptyText: {
-    textAlign: 'center',
-    marginTop: 50,
+    marginTop: 10,
     fontSize: 16,
-    color: '#757575',
+    color: '#666',
+    textAlign: 'center',
   },
-  fab: {
+  
+  taskPending: {
+    backgroundColor: '#FFF',
+  },
+  taskCompleted: {
+    backgroundColor: '#e0e0e0',
+  },
+  titlePending: {
+    fontSize: 16,
+    color: '#333',
+  },
+  titleCompleted: {
+    fontSize: 16,
+    color: '#999',
+    textDecorationLine: 'line-through',
+  },
+
+  floatingButton: {
     position: 'absolute',
     width: 60,
     height: 60,
@@ -114,17 +169,12 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     right: 30,
     bottom: 30,
-    backgroundColor: '#4CAF50', 
+    backgroundColor: '#6200EE', 
     borderRadius: 30,
     elevation: 8,
     shadowColor: '#000',
-    shadowOffset: { width: 0, height: 3 },
+    shadowOffset: { width: 0, height: 4 },
     shadowOpacity: 0.3,
-    shadowRadius: 4,
-  },
-  fabText: {
-    fontSize: 24,
-    color: 'white',
-    fontWeight: 'bold',
+    shadowRadius: 4.65,
   },
 });
