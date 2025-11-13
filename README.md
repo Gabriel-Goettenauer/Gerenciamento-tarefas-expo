@@ -57,8 +57,8 @@ O desenvolvimento do **ToDoApp** foi dividido em sprints para garantir um progre
 ### Sprint 3: Melhorias e Finalização (20/10 a 10/11) - **EM ANDAMENTO**
 
 * \[x\] **Tema Dinâmico (Dark Mode - Nova Tarefa):** Implementação da tela de **Configurações** (`/settings`) e da lógica para alternar entre os temas Claro e Escuro, com persistência da preferência.
-* \[ \] **Validações:** Adicionar validações de formulário (ex: título obrigatório) e feedback de erro. (*Falta Implementar*)
-* \[ \] **Finalização/Prevenção de Erros:** Ajuste fino da UX, correções de bugs de layout e tratamento de erros do sistema.
+* \[x\] **Validações:** Adicionar validações de formulário (ex: título obrigatório) e feedback de erro. (*Falta Implementar*)
+* \[x\] **Finalização/Prevenção de Erros:** Ajuste fino da UX, correções de bugs de layout e tratamento de erros do sistema.
 
 ---
 
